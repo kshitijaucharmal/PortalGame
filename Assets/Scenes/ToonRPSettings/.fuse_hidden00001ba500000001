@@ -61,9 +61,9 @@ MonoBehaviour:
     ForceStoreCameraDepth: 0
   ShadowSettings:
     Mode: 1
-    Threshold: 0.466
+    Threshold: 0.5
     CrispAntiAliased: 0
-    Smoothness: 0
+    Smoothness: 0.075
     MaxDistance: 100
     DistanceFade: 0.1
     Pattern: {fileID: 0}
