@@ -102,7 +102,8 @@ MonoBehaviour:
       ShadowPositionOffset: {x: 0, y: 0}
       ReceiverPlaneY: 0
   Extensions:
-    Extensions: []
+    Extensions:
+    - {fileID: 11400000, guid: 034e79b904ca3b341ac63b6cd99499a9, type: 2}
   PostProcessing:
     Enabled: 1
     Passes: []
