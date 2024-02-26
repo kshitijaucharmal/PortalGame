@@ -21,21 +21,21 @@ MonoBehaviour:
   - {fileID: 4800000, guid: 2268c7f425a8453ba9e77607d402a9b4, type: 3}
   - {fileID: 4800000, guid: 4aee5d6e842043a384557e2f0557f76c, type: 3}
   GlobalRampSettings:
-    Threshold: 0
-    SpecularThreshold: 0.99
+    Threshold: 0.17
+    SpecularThreshold: 1
     RimThreshold: 0.5
-    Mode: 0
+    Mode: 2
     Smoothness: 0.02
     SpecularSmoothness: 0.005
     RimSmoothness: 0.1
-    RampTexture: {fileID: 0}
+    RampTexture: {fileID: 2800000, guid: 3ce3cc2aa2dcaf66f9f1947bbf961b16, type: 3}
     AdditionalLights:
       DiffuseOffset: 0
       SpecularOffset: 0
       DistanceAttenuationFactor: 1
   CameraRendererSettings:
     AdditionalLights: 0
-    TiledLighting: 0
+    TiledLighting: 1
     MaxLightsPerTile: 32
     OverrideRenderTextureFormat: 0
     RenderTextureFormat: 4
@@ -61,22 +61,22 @@ MonoBehaviour:
     ForceStoreCameraDepth: 0
   ShadowSettings:
     Mode: 1
-    Threshold: 0.466
+    Threshold: 0.038
     CrispAntiAliased: 0
     Smoothness: 0
     MaxDistance: 100
     DistanceFade: 0.1
-    Pattern: {fileID: 0}
-    PatternScale: {x: 1, y: 0, z: 1}
+    Pattern: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+    PatternScale: {x: -2, y: 2, z: 2}
     ShadowMaps:
       DepthBits: 16
-      Blur: 0
+      Blur: 2
       BlurEarlyBail: 1
       BlurEarlyBailThreshold: 0.01
       BlurScatter: 1
       VsmPrecision: 0
       SoftShadows:
-        Enabled: 1
+        Enabled: 0
         Quality: 1
         Mode: 0
         EarlyBail: 0
@@ -104,6 +104,8 @@ MonoBehaviour:
   Extensions:
     Extensions:
     - {fileID: 11400000, guid: 034e79b904ca3b341ac63b6cd99499a9, type: 2}
+    - {fileID: 11400000, guid: 1ae176640a77825df9ad6adecea9ae1d, type: 2}
   PostProcessing:
     Enabled: 1
-    Passes: []
+    Passes:
+    - {fileID: 11400000, guid: 321e9085b830c5fc7958363562ae4640, type: 2}

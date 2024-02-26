@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour {
 
     [SerializeField] private Vector2Int gridDimensions = new Vector2Int(10, 10);
     [SerializeField] private GameObject cellPrefab;
+    [SerializeField] private int scaling = 5;
+
+    [SerializeField] private EnemySpawner enemySpawner;
 
     private Cell[,] cells;
     private Stack<Vector2Int> visited = new Stack<Vector2Int>();
@@ -21,10 +22,17 @@ public class MazeGenerator : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         if (!generatedBlocks) GenerateBlocks();
+        while (!completed)
+        {
+            Step();
+        }
+        BakeNavMesh();
+
+        // Spawn Enemies
+        enemySpawner.SpawnEnemies(scaling, gridDimensions.x);
     }
     
     void Update(){
-        if(!completed) Step();
     }
 
     public void GenerateBlocks(){
@@ -33,7 +41,7 @@ public class MazeGenerator : MonoBehaviour {
         cells = new Cell[gridDimensions.x, gridDimensions.y];
         for(int i = 0; i < gridDimensions.x; i++){
             for(int j = 0; j < gridDimensions.y; j++){
-                Vector3 pos = new Vector3(i, 0, j);
+                Vector3 pos = new Vector3(i * scaling + scaling, 0, j * scaling + scaling);
                 GameObject obj = Instantiate(cellPrefab, pos, Quaternion.identity, mazeObj.transform);
                 cells[i, j] = obj.GetComponent<Cell>();
             }
