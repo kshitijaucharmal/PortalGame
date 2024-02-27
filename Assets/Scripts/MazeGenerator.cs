@@ -12,6 +12,8 @@ public class MazeGenerator : MonoBehaviour {
 
     [SerializeField] private EnemySpawner enemySpawner;
 
+    [SerializeField] private GameObject treasurePrefab;
+
     private Cell[,] cells;
     private Stack<Vector2Int> visited = new Stack<Vector2Int>();
     private Vector2Int current;
@@ -58,6 +60,7 @@ public class MazeGenerator : MonoBehaviour {
         Vector2Int[] neighbors = GetUnvisitedNeighbors(current.x, current.y);
 
         if (neighbors.Length > 0){
+
             // Random neighbor
             Vector2Int neighbor = neighbors[Random.Range(0, neighbors.Length)];
             // Set visited
@@ -73,6 +76,7 @@ public class MazeGenerator : MonoBehaviour {
         }
         else if(visited.Count > 0){
             var n = visited.Pop();
+
             current.Set(n.x, n.y);
         }
         else{

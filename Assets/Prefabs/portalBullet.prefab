@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactPS: {fileID: 1937802077019026277, guid: 2308b1da7f067aba0ac6adf8bef1610d, type: 3}
   bulletType: 1
-  maxBounces: 10
+  maxBounces: 0
