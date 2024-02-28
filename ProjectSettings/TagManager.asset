@@ -16,10 +16,10 @@ TagManager:
   - UI
   - Gorund
   - Minimap
-  - 
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - EnemyBullet
+  - Enemy
+  - Wall
   - 
   - 
   - 

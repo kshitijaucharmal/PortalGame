@@ -6,13 +6,11 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour {
 
-    [SerializeField] private Vector2Int gridDimensions = new Vector2Int(10, 10);
+    public Vector2Int gridDimensions = new Vector2Int(10, 10);
     [SerializeField] private GameObject cellPrefab;
-    [SerializeField] private int scaling = 5;
+    public int scaling = 5;
 
     [SerializeField] private EnemySpawner enemySpawner;
-
-    [SerializeField] private GameObject treasurePrefab;
 
     private Cell[,] cells;
     private Stack<Vector2Int> visited = new Stack<Vector2Int>();

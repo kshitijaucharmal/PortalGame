@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
-public class PlayerMoment : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public float speed = 12f;
@@ -12,13 +14,31 @@ public class PlayerMoment : MonoBehaviour
     public float groundDistance = 0.4f;
     public float jumpHeight = 3f;
     public LayerMask groundMask;
+    
+    private int health = 100;
+    [SerializeField] private GameObject gameoverCanvas;
+    [SerializeField] private TMP_Text healthText;
 
     Vector3 velocity;
     bool isGrounded;
     // Start is called before the first frame update
     void Start()
     {
+        gameoverCanvas.SetActive(false);
+        healthText.text = health.ToString();
+    }
 
+    public void damage(int dam){
+        health -= dam;
+
+        if (health <= 0){
+            Debug.Log("Player Dead");
+            // You Lost
+            gameoverCanvas.SetActive(true);
+            Destroy(gameObject);
+        }
+        
+        healthText.text = health.ToString();
     }
 
     // Update is called once per frame

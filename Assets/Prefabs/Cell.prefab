@@ -4907,7 +4907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4850935777011192255}
   - component: {fileID: 8550113086321307873}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: top_wall
   m_TagString: TopWall
   m_Icon: {fileID: 0}
@@ -14832,7 +14832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4110120895148822398}
   - component: {fileID: 3504935800796068645}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: right_wall
   m_TagString: RightWall
   m_Icon: {fileID: 0}

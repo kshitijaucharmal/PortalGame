@@ -32,6 +32,37 @@ Transform:
   - {fileID: 2093039340302831241}
   m_Father: {fileID: 2549175649075817485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1660963694125870504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2568502348761632577}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2568502348761632577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660963694125870504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.73, z: 0.598}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7258735387221956300}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961943293425109141
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +75,7 @@ GameObject:
   - component: {fileID: 2005491581642098936}
   - component: {fileID: 5639197052809860773}
   - component: {fileID: 4881521427781563111}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -66,6 +97,7 @@ Transform:
   m_Children:
   - {fileID: 6084209838648660860}
   - {fileID: 992879593431322192}
+  - {fileID: 2568502348761632577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2005491581642098936
@@ -126,7 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5639197052809860773}
-  range: 20
+  range: 10
+  bulletSpeed: 10
+  bulletPrefab: {fileID: 8896099984018579331, guid: cc89ef7fbc6765c2ab9406a85ba6a7fd, type: 3}
+  bulletSpwnTime: 2
+  shootPoint: {fileID: 2568502348761632577}
   player: {fileID: 0}
 --- !u!1 &3470422301968108038
 GameObject:
@@ -486,7 +522,7 @@ GameObject:
   - component: {fileID: 992879593431322192}
   - component: {fileID: 7330182161260957509}
   m_Layer: 7
-  m_Name: Circle
+  m_Name: mapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

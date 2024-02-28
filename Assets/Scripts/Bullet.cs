@@ -15,17 +15,13 @@ public class Bullet : MonoBehaviour
     private int bounceCtr = 0;
 
 
-
-
     void OnCollisionEnter(Collision other){
-
-        Debug.Log(other.transform.tag);
 
         // Enemy Handling
         if(bulletType == BulletType.SHOT && other.transform.CompareTag("Enemy")){
             // Destroy enemy
             // TODO: Enemy health decrease
-            Destroy(other.gameObject);
+            other.transform.GetComponent<EnemyScript>().damage(Random.Range(20, 50));
             // Destroy Bullet
             Destroy(gameObject);
         }
@@ -46,6 +42,7 @@ public class Bullet : MonoBehaviour
                 // Destroy Bullet
                 Destroy(gameObject);
             }
+            return;
         }
 
         if (bounceCtr < maxBounces) {
@@ -56,6 +53,7 @@ public class Bullet : MonoBehaviour
         // Impact PS
         var go = Instantiate(impactPS, transform.position, Quaternion.identity);
         Destroy(go, 2f);
+        AudioManager.instance.Play("explo");
 
         // Destroy Bullet
         Destroy(gameObject);

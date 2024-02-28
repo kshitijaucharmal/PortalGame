@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8927128847614911565}
   - component: {fileID: -2942543868195246512}
   - component: {fileID: -5197802947146188471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: portalBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
