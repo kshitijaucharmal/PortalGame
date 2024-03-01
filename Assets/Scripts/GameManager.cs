@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,7 +11,17 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Transform dirArrow;
     [SerializeField] private MazeGenerator mazeGenerator;
     [SerializeField] private Timer timer;
+    
+    [Header("Canvas controls")]
     [SerializeField] private GameObject gameoverCanvas;
+    [SerializeField] private GameObject hudCanvas;
+
+    [Header("Stats")]
+    [SerializeField] private TMP_Text playerHealthText;
+    [SerializeField] private TMP_Text enemiesKilledText;
+    [SerializeField] private TMP_Text timeTakenText;
+    [SerializeField] private TMP_Text timeTakenTitle;
+    [SerializeField] private TMP_Text winLoseText;
 
     private Vector3 gemPos;
 
@@ -31,12 +42,6 @@ public class GameManager : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
     }
-
-    public void GameOver(){
-        timer.StopTimer();
-        gameoverCanvas.SetActive(true);
-    }
-
 
     // Start is called before the first frame update
     void Start() {
@@ -67,26 +72,36 @@ public class GameManager : MonoBehaviour {
         Destroy(gems[currentGem]);
         currentGem++;
         if(currentGem >= gems.Length){
-            GameWon();
+            // Game Completed
+            GameDone(true);
         }
         SetTarget(currentGem);
     }
 
-    public void GameWon(){
-        Debug.Log("You won the game!!!!");
-        Debug.Log("Showing stats:");
+    public void GameDone(bool won){
+        Time.timeScale = 0;
         timer.StopTimer();
+        // Cusor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
 
         var player = GameObject.FindGameObjectWithTag("Player");
         int health = player.GetComponent<PlayerMovement>().GetHealth();
         int enemies_killed = player.GetComponent<Shooting>().enemies_killed;
         string timeString = timer.timeString;
-        
-        // Will show by TMP text later
-        Debug.Log("Player Health: " + health.ToString());
-        Debug.Log("Enemies Killed: " + enemies_killed.ToString());
-        Debug.Log("Time Taken: " + timeString);
 
+        playerHealthText.text = won ? health.ToString() : "DEAD";
+        enemiesKilledText.text = enemies_killed.ToString();
+        timeTakenText.text = timeString;
+        timeTakenTitle.text = won ? "Beat Maze in:" : "Got Ass kicked for:";
+        winLoseText.text = won ? "YOU WIN :) !!" : "You Lost :(";
+
+        CanvasCleanup();
+    }
+
+    public void CanvasCleanup(){
+        gameoverCanvas.SetActive(true);
+        hudCanvas.SetActive(false);
     }
 
     // Update is called once per frame

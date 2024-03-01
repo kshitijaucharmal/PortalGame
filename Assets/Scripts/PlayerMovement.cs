@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (health <= 0){
             health = 0;
-            GameManager.instance.GameOver();
+            GameManager.instance.GameDone(false);
             // You Lost
             Destroy(gameObject);
         }
