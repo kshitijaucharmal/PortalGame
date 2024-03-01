@@ -9,6 +9,7 @@ public enum BulletType {
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject impactPS;
+    [SerializeField] private GameObject portalImpactPS;
     [SerializeField] private BulletType bulletType;
     [SerializeField] private int maxBounces = 0;
 
@@ -50,7 +51,8 @@ public class Bullet : MonoBehaviour
         }
 
         // Impact PS
-        var go = Instantiate(impactPS, transform.position, Quaternion.identity);
+        var ps = bulletType == BulletType.PORTAL ? portalImpactPS : impactPS;
+        var go = Instantiate(ps, transform.position, Quaternion.identity);
         Destroy(go, 2f);
         AudioManager.instance.Play("explo");
 

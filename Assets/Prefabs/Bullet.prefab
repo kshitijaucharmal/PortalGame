@@ -147,5 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPS: {fileID: 1937802077019026277, guid: 2308b1da7f067aba0ac6adf8bef1610d, type: 3}
+  portalImpactPS: {fileID: 1937802077019026277, guid: 921ddebe34f9dcac68a26fa116a6d301, type: 3}
   bulletType: 0
   maxBounces: 0

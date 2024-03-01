@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject hudCanvas;
 
     [Header("Stats")]
+    [SerializeField] private TMP_Text gemsCollectedText;
     [SerializeField] private TMP_Text playerHealthText;
     [SerializeField] private TMP_Text enemiesKilledText;
     [SerializeField] private TMP_Text timeTakenText;
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour {
             float x = Random.Range(0, mazeGenerator.gridDimensions.x * mazeGenerator.scaling);
             float z = Random.Range(0, mazeGenerator.gridDimensions.y * mazeGenerator.scaling);
             Vector3 pos = new Vector3(x, 2f, z);
-            gems[i] = Instantiate(gems[i], pos, Quaternion.identity, transform);
+            gems[i] = Instantiate(gems[i], pos, Quaternion.Euler(-90f, 0f, 0f), transform);
             var col = gems[i].GetComponent<Collider>();
             col.isTrigger = true;
             col.enabled = false;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour {
 
         // Set Current Position
         SetTarget(currentGem);
+        gemsCollectedText.text = string.Format("{0}/{1}", currentGem, gems.Length);
 
         timer.StartTimer();
         gameoverCanvas.SetActive(false);
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour {
     public void CollectGem(){
         Destroy(gems[currentGem]);
         currentGem++;
+        gemsCollectedText.text = string.Format("{0}/{1}", currentGem, gems.Length);
         if(currentGem >= gems.Length){
             // Game Completed
             GameDone(true);
@@ -96,12 +99,19 @@ public class GameManager : MonoBehaviour {
         timeTakenTitle.text = won ? "Beat Maze in:" : "Got Ass kicked for:";
         winLoseText.text = won ? "YOU WIN :) !!" : "You Lost :(";
 
-        CanvasCleanup();
-    }
-
-    public void CanvasCleanup(){
         gameoverCanvas.SetActive(true);
         hudCanvas.SetActive(false);
+    }
+
+    public void GameRestart(){
+        gameoverCanvas.SetActive(false);
+        hudCanvas.SetActive(true);
+
+        Time.timeScale = 1;
+        timer.StartTimer();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

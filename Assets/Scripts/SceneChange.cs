@@ -15,6 +15,7 @@ public class SceneChange : MonoBehaviour
     public void StartGame(){
         // 1 is index of gamescene
         SceneManager.LoadScene(1);
+        GameManager.instance.GameRestart();
     }
 
     public void MainMenu(){
@@ -23,6 +24,7 @@ public class SceneChange : MonoBehaviour
 
     public void Restart(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.instance.GameRestart();
     }
     public void QuitGame(){
         Application.Quit();

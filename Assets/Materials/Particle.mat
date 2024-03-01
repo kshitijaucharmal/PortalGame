@@ -63,7 +63,7 @@ Material:
     - _SurfaceType: 0
     - _ZWrite: 1
     m_Colors:
-    - _EmissionColor: {r: 0.6037736, g: 0.2609415, b: 0.025631888, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.75}

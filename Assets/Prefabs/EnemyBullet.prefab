@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageRange: {x: 5, y: 15}
-  impactPS: {fileID: 1937802077019026277, guid: 2308b1da7f067aba0ac6adf8bef1610d, type: 3}
+  impactPS: {fileID: 1937802077019026277, guid: d93f1cdcb4758db99a964ad7ba691e90, type: 3}
