@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 0;
         timer.StopTimer();
         // Cusor
-        Cursor.visible = false;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
         var player = GameObject.FindGameObjectWithTag("Player");

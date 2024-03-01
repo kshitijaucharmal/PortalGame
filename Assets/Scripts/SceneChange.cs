@@ -17,6 +17,13 @@ public class SceneChange : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void MainMenu(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void QuitGame(){
         Application.Quit();
         Debug.Log("QuitGame");
