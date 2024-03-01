@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     
     private int health = 100;
-    [SerializeField] private GameObject gameoverCanvas;
     [SerializeField] private TMP_Text healthText;
 
     Vector3 velocity;
@@ -24,17 +23,20 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameoverCanvas.SetActive(false);
         healthText.text = health.ToString();
+    }
+
+    public int GetHealth(){
+        return health;
     }
 
     public void damage(int dam){
         health -= dam;
 
         if (health <= 0){
-            Debug.Log("Player Dead");
+            health = 0;
+            GameManager.instance.GameOver();
             // You Lost
-            gameoverCanvas.SetActive(true);
             Destroy(gameObject);
         }
         
@@ -65,5 +67,17 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void OnCollisionEnter(Collision other){
+        if (other.transform.CompareTag("Enemy")){
+            damage(10);
+        }
+    }
+
+    void OnTriggerEnter(Collider other){
+        if (other.CompareTag("Gem")){
+            GameManager.instance.CollectGem();
+        }
     }
 }

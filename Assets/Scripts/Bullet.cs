@@ -14,7 +14,6 @@ public class Bullet : MonoBehaviour
 
     private int bounceCtr = 0;
 
-
     void OnCollisionEnter(Collision other){
 
         // Enemy Handling

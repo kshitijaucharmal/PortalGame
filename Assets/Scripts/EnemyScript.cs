@@ -26,6 +26,8 @@ public class EnemyScript : MonoBehaviour {
         health -= dam;
         if(health < 0){
             Destroy(gameObject);
+            var shooting = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>();
+            shooting.EnemyKilled();
         }
     }
 
@@ -34,6 +36,7 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void Update() {
+        if(player == null) return;
         canSeePlayer = Vector3.Distance(player.position, transform.position) < range;
         if(canSeePlayer){
             bulletSpwnCtr -= Time.deltaTime;

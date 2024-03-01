@@ -161,7 +161,7 @@ MonoBehaviour:
   range: 10
   bulletSpeed: 10
   bulletPrefab: {fileID: 8896099984018579331, guid: cc89ef7fbc6765c2ab9406a85ba6a7fd, type: 3}
-  bulletSpwnTime: 2
+  bulletSpwnTime: 1
   shootPoint: {fileID: 2568502348761632577}
   player: {fileID: 0}
 --- !u!1 &3470422301968108038

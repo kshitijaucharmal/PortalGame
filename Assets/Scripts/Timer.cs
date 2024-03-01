@@ -10,30 +10,32 @@ public class Timer : MonoBehaviour
     float elapsedTime;
     float timer;
     bool paused = false;
-    // Update is called once per frame
-    void Update()
+
+    public string timeString;
+    void UpdateTimer()
     {
         elapsedTime += Time.deltaTime;
         timer = elapsedTime;
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
-        int millis = Mathf.FloorToInt(timer * 1000) % 1000;
-        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, millis);
+        int millis = Mathf.FloorToInt(timer * 1000) % 100;
+        timeString = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, millis);
+        timerText.text = timeString;
     }
 
-    void RestartTimer()
+    public void RestartTimer()
     {
         timer = 0;
     }
 
-    void StopTimer()
+    public void StopTimer()
     {
         //stop the timer
         paused = true;
-        CancelInvoke("Update");
+        CancelInvoke("UpdateTimer");
     }
 
-    void StartTimer()
+    public void StartTimer()
     {
         if (!paused)
         {
@@ -41,7 +43,6 @@ public class Timer : MonoBehaviour
             paused = false;
         }
 
-        InvokeRepeating("Update", 0.0f, 1.0f);
-
+        InvokeRepeating("UpdateTimer", 0.0f, Time.deltaTime);
     }
 }
