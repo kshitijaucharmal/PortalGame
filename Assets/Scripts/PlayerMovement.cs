@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     
     private int health = 100;
     [SerializeField] private TMP_Text healthText;
+    [SerializeField] private AudioSource footSteps;
 
     Vector3 velocity;
     bool isGrounded;
@@ -56,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 moment = transform.right * x + transform.forward * z;
+        if(moment.magnitude > 0.1){
+            footSteps.volume = 0.5f;
+        } else footSteps.volume = 0f;
 
         controller.Move(moment * speed * Time.deltaTime);
 
@@ -78,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Gem")){
             GameManager.instance.CollectGem();
+        }
+        if (other.transform.CompareTag("Portal")){
+            AudioManager.instance.Play("whoosh");
         }
     }
 }
