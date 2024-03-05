@@ -2,60 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BulletType {
-    SHOT, PORTAL
-}
+public enum BulletType { SHOT, PORTAL }
 
-public class Bullet : MonoBehaviour
-{
-    [SerializeField] private GameObject impactPS;
-    [SerializeField] private GameObject portalImpactPS;
-    [SerializeField] private BulletType bulletType;
-    [SerializeField] private int maxBounces = 0;
+public class Bullet : MonoBehaviour {
+  [SerializeField]
+  private GameObject impactPS;
+  [SerializeField]
+  private GameObject portalImpactPS;
+  [SerializeField]
+  private BulletType bulletType;
+  [SerializeField]
+  private int maxBounces = 0;
 
-    private int bounceCtr = 0;
+  private int bounceCtr = 0;
 
-    void OnCollisionEnter(Collision other){
+  void OnCollisionEnter(Collision other) {
 
-        // Enemy Handling
-        if(bulletType == BulletType.SHOT && other.transform.CompareTag("Enemy")){
-            // Destroy enemy
-            // TODO: Enemy health decrease
-            other.transform.GetComponent<EnemyScript>().damage(Random.Range(20, 50));
-            // Destroy Bullet
-            Destroy(gameObject);
-        }
+    // Enemy Handling
+    if (bulletType == BulletType.SHOT && other.transform.CompareTag("Enemy")) {
+      // Destroy enemy
+      // TODO: Enemy health decrease
+      other.transform.GetComponent<EnemyScript>().damage(Random.Range(20, 50));
+      // Destroy Bullet
+      Destroy(gameObject);
+    }
 
-        // Wall
-        if (bulletType == BulletType.PORTAL){
-            if(other.transform.CompareTag("RightWall")){
-                // Enable Portal and destroy wall
-                var cell = other.transform.GetComponentInParent<Cell>();
-                cell.ConvertRight();
-                // Destroy Bullet
-                Destroy(gameObject);
-            }
-            if(other.transform.CompareTag("TopWall")){
-                // Enable Portal and destroy wall
-                var cell = other.transform.GetComponentInParent<Cell>();
-                cell.ConvertTop();
-                // Destroy Bullet
-                Destroy(gameObject);
-            }
-            return;
-        }
-
-        if (bounceCtr < maxBounces) {
-            bounceCtr ++;
-            return;
-        }
-
-        // Impact PS
-        var ps = bulletType == BulletType.PORTAL ? portalImpactPS : impactPS;
-        var go = Instantiate(ps, transform.position, Quaternion.identity);
-        Destroy(go, 2f);
-
+    // Wall
+    if (bulletType == BulletType.PORTAL) {
+      if (other.transform.CompareTag("RightWall")) {
+        // Enable Portal and destroy wall
+        var cell = other.transform.GetComponentInParent<Cell>();
+        cell.ConvertRight();
         // Destroy Bullet
         Destroy(gameObject);
+      }
+      if (other.transform.CompareTag("TopWall")) {
+        // Enable Portal and destroy wall
+        var cell = other.transform.GetComponentInParent<Cell>();
+        cell.ConvertTop();
+        // Destroy Bullet
+        Destroy(gameObject);
+      }
+      return;
     }
+
+    if (bounceCtr < maxBounces) {
+      bounceCtr++;
+      return;
+    }
+
+    // Impact PS
+    var ps = bulletType == BulletType.PORTAL ? portalImpactPS : impactPS;
+    var go = Instantiate(ps, transform.position, Quaternion.identity);
+    Destroy(go, 2f);
+
+    // Destroy Bullet
+    Destroy(gameObject);
+  }
 }
