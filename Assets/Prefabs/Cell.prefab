@@ -14889,9 +14889,10 @@ GameObject:
   - component: {fileID: 4362333023397312361}
   - component: {fileID: 374359629827589373}
   - component: {fileID: 6796909188319524577}
+  - component: {fileID: 491936977052855466}
   m_Layer: 0
   m_Name: topProta
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19770,6 +19771,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &491936977052855466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4455862397630342876}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.594292, y: 0.48353648, z: 10.025663}
+  m_Center: {x: 0, y: 0.05959189, z: 0}
 --- !u!1 &4591704579735515008
 GameObject:
   m_ObjectHideFlags: 0
@@ -29976,9 +29998,10 @@ GameObject:
   - component: {fileID: 5055177245663916940}
   - component: {fileID: 9195356720526573592}
   - component: {fileID: 2665848178955104772}
+  - component: {fileID: 2357515621944483568}
   m_Layer: 0
   m_Name: rightProta
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34857,6 +34880,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &2357515621944483568
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150958059226718777}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.3602, y: 0.67051816, z: 11.3602}
+  m_Center: {x: 1.2434498e-14, y: -0.0680276, z: 0}
 --- !u!1 &6904816306255076022
 GameObject:
   m_ObjectHideFlags: 0

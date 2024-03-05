@@ -8,6 +8,7 @@ TagManager:
   - TopWall
   - RightWall
   - Gem
+  - Portal
   layers:
   - Default
   - TransparentFX

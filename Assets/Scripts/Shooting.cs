@@ -51,6 +51,7 @@ public class Shooting : MonoBehaviour
         GameObject p = portal ? portalBulletPrefab : normalBulletPrefab;
         Rigidbody bulletInstance = Instantiate(p, shootPoint.position, transform.rotation).GetComponent<Rigidbody>();
         bulletInstance.AddForce((cam.forward + angleOffset) * bulletSpeed, ForceMode.Impulse);
+        AudioManager.instance.Play("laset");
         // Destroy(bulletInstance.gameObject, 3f);
 
     }

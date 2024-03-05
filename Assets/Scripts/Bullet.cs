@@ -54,7 +54,6 @@ public class Bullet : MonoBehaviour
         var ps = bulletType == BulletType.PORTAL ? portalImpactPS : impactPS;
         var go = Instantiate(ps, transform.position, Quaternion.identity);
         Destroy(go, 2f);
-        AudioManager.instance.Play("explo");
 
         // Destroy Bullet
         Destroy(gameObject);
