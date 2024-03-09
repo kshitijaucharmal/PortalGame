@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 
 public class Shooting : MonoBehaviour {
+  [Header("Prefabs")]
   public Transform shootPoint;
   public GameObject normalBulletPrefab;
   public GameObject portalBulletPrefab;
@@ -14,24 +15,25 @@ public class Shooting : MonoBehaviour {
   private Transform cam;
   [SerializeField]
   private Vector3 angleOffset;
-
-  [HideInInspector]
-  public int enemies_killed = 0;
-  private int n_portals = 0;
   [SerializeField]
   private TMP_Text portalsText;
   [SerializeField]
   private int enemiesToKillForPortal = 2;
 
+  [HideInInspector]
+  public int enemies_killed = 0;
+  private int n_portals = 0;
+
   // Start is called before the first frame update
   void Start() { portalsText.text = "0"; }
 
+  // Add Enemy to killed list
   public void EnemyKilled() {
     enemies_killed += 1;
     if (enemies_killed % enemiesToKillForPortal == 0) {
       n_portals += 1;
+      portalsText.text = n_portals.ToString();
     }
-    portalsText.text = n_portals.ToString();
   }
 
   // Update is called once per frame
@@ -51,12 +53,16 @@ public class Shooting : MonoBehaviour {
         return;
     }
     GameObject p = portal ? portalBulletPrefab : normalBulletPrefab;
+
     Rigidbody bulletInstance =
         Instantiate(p, shootPoint.position, transform.rotation)
             .GetComponent<Rigidbody>();
+    // Play audio
+    AudioManager.instance.Play("laser");
+
+    // Actually shoot
     bulletInstance.AddForce((cam.forward + angleOffset) * bulletSpeed,
                             ForceMode.Impulse);
-    AudioManager.instance.Play("laset");
     // Destroy(bulletInstance.gameObject, 3f);
   }
 }

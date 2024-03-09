@@ -16,18 +16,19 @@ public class EnemyScript : MonoBehaviour {
   private float bulletSpwnTime = 1f;
   [SerializeField]
   private Transform shootPoint;
+  [SerializeField]
+  private Animator animator;
 
   public Transform player;
   private int health = 100;
-
   private float bulletSpwnCtr = 0;
-
   private bool canSeePlayer = false;
-
   public void SetTarget(Transform target) { player = target; }
 
   public void damage(int dam) {
     health -= dam;
+    animator.SetTrigger("Hurt");
+    // If dead
     if (health < 0) {
       Destroy(gameObject);
       var shooting =
@@ -63,6 +64,7 @@ public class EnemyScript : MonoBehaviour {
     Vector3 direction =
         (player.position - transform.position).normalized + randomOffset;
     bullet.AddForce(direction * bulletSpeed, ForceMode.Impulse);
+    animator.SetTrigger("Shoot");
     Destroy(bullet, 5f);
   }
 }

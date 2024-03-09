@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField]
   private AudioSource footSteps;
 
+  [SerializeField]
+  private MouseMovment camera;
+
   Vector3 velocity;
   bool isGrounded;
   // Start is called before the first frame update
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
   public void damage(int dam) {
     health -= dam;
+    StartCoroutine(camera.Shake(0.2f, 0.3f));
 
     if (health <= 0) {
       health = 0;

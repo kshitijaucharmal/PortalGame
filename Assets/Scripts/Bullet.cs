@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
     if (bulletType == BulletType.SHOT && other.transform.CompareTag("Enemy")) {
       // Destroy enemy
       // TODO: Enemy health decrease
-      other.transform.GetComponent<EnemyScript>().damage(Random.Range(20, 50));
+      other.transform.GetComponent<EnemyScript>().damage(25);
       // Destroy Bullet
       Destroy(gameObject);
     }

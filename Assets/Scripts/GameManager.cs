@@ -96,34 +96,44 @@ public class GameManager : MonoBehaviour {
   }
 
   public void GameDone(bool won) {
+    // Pause Time
     Time.timeScale = 0;
+    // Stop Speedrun clock
     timer.StopTimer();
-    // Cusor
+
+    // Cursor
     Cursor.visible = true;
     Cursor.lockState = CursorLockMode.None;
 
+    // Get Data for UI
     var player = GameObject.FindGameObjectWithTag("Player");
     int health = player.GetComponent<PlayerMovement>().GetHealth();
     int enemies_killed = player.GetComponent<Shooting>().enemies_killed;
     string timeString = timer.timeString;
 
+    // UI Updates
     playerHealthText.text = won ? health.ToString() : "DEAD";
     enemiesKilledText.text = enemies_killed.ToString();
     timeTakenText.text = timeString;
     timeTakenTitle.text = won ? "Beat Maze in:" : "Got Ass kicked for:";
     winLoseText.text = won ? "YOU WIN :) !!" : "You Lost :(";
 
+    // Canvas Updates
     gameoverCanvas.SetActive(true);
     hudCanvas.SetActive(false);
   }
 
   public void GameRestart() {
+    // Canvas Updates
     gameoverCanvas.SetActive(false);
     hudCanvas.SetActive(true);
 
+    // Time back to normal
     Time.timeScale = 1;
+    // Start Speedrun timer again
     timer.StartTimer();
 
+    // Cursor Setup again
     Cursor.visible = false;
     Cursor.lockState = CursorLockMode.Locked;
   }

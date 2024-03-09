@@ -20,4 +20,19 @@ public class MouseMovment : MonoBehaviour {
     transform.localRotation = Quaternion.Euler(xRoatation, 0f, 0f);
     playerBody.Rotate(Vector3.up * mouseX);
   }
+
+  public IEnumerator Shake(float duration, float magnitude){
+    Vector3 originalPosition = transform.localPosition;
+    float elapsed = 0;
+    while(elapsed < duration){
+      float x = Random.Range(-1f, 1f) * magnitude;
+      float y = Random.Range(-1f, 1f) * magnitude;
+      transform.localPosition = new Vector3(x, y, originalPosition.z);
+      elapsed += Time.deltaTime;
+      yield return null;
+    }
+
+    transform.localPosition = originalPosition;
+  }
+
 }
