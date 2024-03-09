@@ -60,7 +60,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _EmissionColor: {r: 2, g: 0.20030144, b: 0, a: 0}
-    - _MainColor: {r: 1, g: 0.7978908, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 0.32468012, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.75}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}

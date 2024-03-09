@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
 public enum ElementType { FIRE, WATER, EARTH, AIR, NONE }
-
 public class GemScript : MonoBehaviour {
 
   public ElementType elementType;
@@ -18,8 +19,8 @@ public class GemScript : MonoBehaviour {
     if (other.CompareTag("Player")) {
       Destroy(gameObject);
       Debug.Log("Got: " + elementType);
-      // notify gameManager That we got this element
-      GameManager.instance.SetCurrentElement(elementType);
+      // notify gameManager That we got this element and add to invetory
+      GameManager.instance.AddElement(elementType);
     }
   }
 }

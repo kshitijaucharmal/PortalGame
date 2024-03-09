@@ -32,18 +32,24 @@ public class GameManager : MonoBehaviour {
   private TMP_Text winLoseText;
 
   private ElementType currentElement = ElementType.NONE;
-  private HashSet<ElementType> inventory = new HashSet<ElementType>();
+  public HashSet<ElementType> inventory = new HashSet<ElementType>();
 
-  public void AddElement(ElementType et) { inventory.Add(et); }
+  public TMP_Text instructions;
+
+  public void AddElement(ElementType et) {
+    inventory.Add(et);
+    SetCurrentElement(et);
+  }
 
   public void SetCurrentElement(ElementType et) {
     // Check to see if player has this element
-    // if (!inventory.Contains(et)) {
-    //   Debug.Log("You Do not posses " + et);
-    //   return;
-    // }
+    if (!inventory.Contains(et)) {
+      instructions.text = "You Don't Posses " + et;
+      return;
+    }
     currentElement = et;
-    Debug.Log("Currently Equipped :" + et);
+    instructions.text = "Currently Equipped: " + et;
+
     if (inventory.Count >= 4) {
       Debug.Log("Every Element Collected");
     }
@@ -55,16 +61,16 @@ public class GameManager : MonoBehaviour {
 
   void Update() {
     if (Input.GetKeyDown(KeyCode.Alpha1)) {
-      SetCurrentElement(ElementType.FIRE);
+      AddElement(ElementType.FIRE);
     }
     if (Input.GetKeyDown(KeyCode.Alpha2)) {
-      SetCurrentElement(ElementType.WATER);
+      AddElement(ElementType.WATER);
     }
     if (Input.GetKeyDown(KeyCode.Alpha3)) {
-      SetCurrentElement(ElementType.AIR);
+      AddElement(ElementType.AIR);
     }
     if (Input.GetKeyDown(KeyCode.Alpha4)) {
-      SetCurrentElement(ElementType.EARTH);
+      AddElement(ElementType.EARTH);
     }
   }
 
@@ -79,10 +85,10 @@ public class GameManager : MonoBehaviour {
     }
 
     DontDestroyOnLoad(gameObject);
-  }
 
-  // Start is called before the first frame update
-  void Start() {
+    hudCanvas.SetActive(true);
+    gameoverCanvas.SetActive(false);
+
     // Instantiate Gems
     for (int i = 0; i < gems.Length; i++) {
       int x = Random.Range(5, (int)(mazeGenerator.gridDimensions.x)) *
@@ -97,9 +103,6 @@ public class GameManager : MonoBehaviour {
       // Set gems as triggers
       col.isTrigger = true;
     }
-
-    hudCanvas.SetActive(true);
-    gameoverCanvas.SetActive(false);
   }
 
   public void GameDone(bool won) {

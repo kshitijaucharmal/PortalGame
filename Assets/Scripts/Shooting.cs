@@ -109,6 +109,6 @@ public class Shooting : MonoBehaviour {
     // Actually shoot
     bulletInstance.AddForce((cam.forward + angleOffset) * bulletSpeed,
                             ForceMode.Impulse);
-    // Destroy(bulletInstance.gameObject, 3f);
+    Destroy(bulletInstance.gameObject, 3f);
   }
 }
