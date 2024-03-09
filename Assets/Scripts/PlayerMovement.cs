@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
   private AudioSource footSteps;
 
   [SerializeField]
-  private MouseMovment camera;
+  private MouseMovment cameraMouse;
 
   Vector3 velocity;
   bool isGrounded;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
   public void damage(int dam) {
     health -= dam;
-    StartCoroutine(camera.Shake(0.2f, 0.3f));
+    StartCoroutine(cameraMouse.Shake(0.2f, 0.3f));
 
     if (health <= 0) {
       health = 0;
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour {
 
   void OnTriggerEnter(Collider other) {
     if (other.CompareTag("Gem")) {
-      GameManager.instance.CollectGem();
+      // GameManager.instance.CollectGem();
     }
     if (other.transform.CompareTag("Portal")) {
       AudioManager.instance.Play("whoosh");

@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: -2942543868195246512}
   - component: {fileID: -5197802947146188471}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: EarthBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53ed1791af503b403a36bd56efc1d871, type: 2}
+  - {fileID: 2100000, guid: b8cfdac713b204559a59e6e8a87998ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,7 +275,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

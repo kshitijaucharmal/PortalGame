@@ -7,7 +7,11 @@ public class Shooting : MonoBehaviour {
   [Header("Prefabs")]
   public Transform shootPoint;
   public GameObject normalBulletPrefab;
+  [Tooltip("FIRE WATER AIR EARTH")]
+  public GameObject[] elementalBulletPrefabs;
   public GameObject portalBulletPrefab;
+  [Tooltip("FIRE WATER AIR EARTH")]
+  public GameObject[] elementalPortalBulletPrefabs;
 
   public float bulletSpeed = 5f;
 
@@ -24,8 +28,16 @@ public class Shooting : MonoBehaviour {
   public int enemies_killed = 0;
   private int n_portals = 0;
 
+  private ElementType equippedElement = ElementType.NONE;
+  private GameObject currentNormalBullet;
+  private GameObject currentPortalBullet;
+
   // Start is called before the first frame update
-  void Start() { portalsText.text = "0"; }
+  void Start() {
+    portalsText.text = "0";
+    currentPortalBullet = portalBulletPrefab;
+    currentNormalBullet = normalBulletPrefab;
+  }
 
   // Add Enemy to killed list
   public void EnemyKilled() {
@@ -44,6 +56,40 @@ public class Shooting : MonoBehaviour {
       Shoot(true);
   }
 
+  public void SetElement(ElementType et) {
+    equippedElement = et;
+    SetBulletType();
+    SetPortalType();
+  }
+
+  void SetBulletType() {
+    if (equippedElement == ElementType.FIRE) {
+      currentNormalBullet = elementalBulletPrefabs[0];
+    } else if (equippedElement == ElementType.WATER) {
+      currentNormalBullet = elementalBulletPrefabs[1];
+    } else if (equippedElement == ElementType.AIR) {
+      currentNormalBullet = elementalBulletPrefabs[2];
+    } else if (equippedElement == ElementType.EARTH) {
+      currentNormalBullet = elementalBulletPrefabs[3];
+    } else if (equippedElement == ElementType.NONE) {
+      currentNormalBullet = normalBulletPrefab;
+    }
+  }
+
+  void SetPortalType() {
+    if (equippedElement == ElementType.FIRE) {
+      currentPortalBullet = elementalPortalBulletPrefabs[0];
+    } else if (equippedElement == ElementType.WATER) {
+      currentPortalBullet = elementalPortalBulletPrefabs[1];
+    } else if (equippedElement == ElementType.AIR) {
+      currentPortalBullet = elementalPortalBulletPrefabs[2];
+    } else if (equippedElement == ElementType.EARTH) {
+      currentPortalBullet = elementalPortalBulletPrefabs[3];
+    } else if (equippedElement == ElementType.NONE) {
+      currentPortalBullet = portalBulletPrefab;
+    }
+  }
+
   void Shoot(bool portal) {
     if (portal) {
       if (n_portals > 0) {
@@ -52,7 +98,7 @@ public class Shooting : MonoBehaviour {
       } else
         return;
     }
-    GameObject p = portal ? portalBulletPrefab : normalBulletPrefab;
+    GameObject p = portal ? currentPortalBullet : currentNormalBullet;
 
     Rigidbody bulletInstance =
         Instantiate(p, shootPoint.position, transform.rotation)

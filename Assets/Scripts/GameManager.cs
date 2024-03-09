@@ -11,11 +11,7 @@ public class GameManager : MonoBehaviour {
   [SerializeField]
   private Transform player;
   [SerializeField]
-  private Transform dirArrow;
-  [SerializeField]
   private MazeGenerator mazeGenerator;
-  [SerializeField]
-  private Timer timer;
 
   [Header("Canvas controls")]
   [SerializeField]
@@ -24,8 +20,6 @@ public class GameManager : MonoBehaviour {
   private GameObject hudCanvas;
 
   [Header("Stats")]
-  [SerializeField]
-  private TMP_Text gemsCollectedText;
   [SerializeField]
   private TMP_Text playerHealthText;
   [SerializeField]
@@ -37,12 +31,44 @@ public class GameManager : MonoBehaviour {
   [SerializeField]
   private TMP_Text winLoseText;
 
-  private Vector3 gemPos;
+  private ElementType currentElement = ElementType.NONE;
+  private HashSet<ElementType> inventory = new HashSet<ElementType>();
 
-  private int currentGem = 0;
+  public void AddElement(ElementType et) { inventory.Add(et); }
+
+  public void SetCurrentElement(ElementType et) {
+    // Check to see if player has this element
+    // if (!inventory.Contains(et)) {
+    //   Debug.Log("You Do not posses " + et);
+    //   return;
+    // }
+    currentElement = et;
+    Debug.Log("Currently Equipped :" + et);
+    if (inventory.Count >= 4) {
+      Debug.Log("Every Element Collected");
+    }
+    // TODO: Update the UI (Now this element is with you)
+    //
+    // Notify player
+    player.GetComponent<Shooting>().SetElement(currentElement);
+  }
+
+  void Update() {
+    if (Input.GetKeyDown(KeyCode.Alpha1)) {
+      SetCurrentElement(ElementType.FIRE);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha2)) {
+      SetCurrentElement(ElementType.WATER);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha3)) {
+      SetCurrentElement(ElementType.AIR);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha4)) {
+      SetCurrentElement(ElementType.EARTH);
+    }
+  }
 
   public static GameManager instance;
-  // AudioManager
 
   void Awake() {
     if (instance == null)
@@ -59,63 +85,38 @@ public class GameManager : MonoBehaviour {
   void Start() {
     // Instantiate Gems
     for (int i = 0; i < gems.Length; i++) {
-      float x = Random.Range(0, mazeGenerator.gridDimensions.x *
-                                    mazeGenerator.scaling);
-      float z = Random.Range(0, mazeGenerator.gridDimensions.y *
-                                    mazeGenerator.scaling);
+      int x = Random.Range(5, (int)(mazeGenerator.gridDimensions.x)) *
+              mazeGenerator.scaling;
+      int z = Random.Range(5, (int)(mazeGenerator.gridDimensions.y)) *
+              mazeGenerator.scaling;
+
       Vector3 pos = new Vector3(x, 2f, z);
       gems[i] =
           Instantiate(gems[i], pos, Quaternion.Euler(-90f, 0f, 0f), transform);
       var col = gems[i].GetComponent<Collider>();
+      // Set gems as triggers
       col.isTrigger = true;
-      col.enabled = false;
     }
 
-    // Set Current Position
-    SetTarget(currentGem);
-    gemsCollectedText.text = string.Format("{0}/{1}", currentGem, gems.Length);
-
-    timer.StartTimer();
+    hudCanvas.SetActive(true);
     gameoverCanvas.SetActive(false);
-  }
-
-  void SetTarget(int gemIndex) {
-    gemPos = gems[gemIndex].transform.position;
-    gems[gemIndex].GetComponent<Collider>().enabled = true;
-  }
-
-  public void CollectGem() {
-    Destroy(gems[currentGem]);
-    currentGem++;
-    gemsCollectedText.text = string.Format("{0}/{1}", currentGem, gems.Length);
-    if (currentGem >= gems.Length) {
-      // Game Completed
-      GameDone(true);
-    }
-    SetTarget(currentGem);
   }
 
   public void GameDone(bool won) {
     // Pause Time
     Time.timeScale = 0;
-    // Stop Speedrun clock
-    timer.StopTimer();
 
     // Cursor
     Cursor.visible = true;
     Cursor.lockState = CursorLockMode.None;
 
     // Get Data for UI
-    var player = GameObject.FindGameObjectWithTag("Player");
     int health = player.GetComponent<PlayerMovement>().GetHealth();
     int enemies_killed = player.GetComponent<Shooting>().enemies_killed;
-    string timeString = timer.timeString;
 
     // UI Updates
     playerHealthText.text = won ? health.ToString() : "DEAD";
     enemiesKilledText.text = enemies_killed.ToString();
-    timeTakenText.text = timeString;
-    timeTakenTitle.text = won ? "Beat Maze in:" : "Got Ass kicked for:";
     winLoseText.text = won ? "YOU WIN :) !!" : "You Lost :(";
 
     // Canvas Updates
@@ -130,21 +131,9 @@ public class GameManager : MonoBehaviour {
 
     // Time back to normal
     Time.timeScale = 1;
-    // Start Speedrun timer again
-    timer.StartTimer();
 
     // Cursor Setup again
     Cursor.visible = false;
     Cursor.lockState = CursorLockMode.Locked;
-  }
-
-  // Update is called once per frame
-  void Update() {
-    if (player == null)
-      return;
-    gemPos.y = player.position.y;
-    var dir = (gemPos - player.position).normalized;
-    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
-    dirArrow.rotation = Quaternion.Euler(0f, -angle, 0f);
   }
 }

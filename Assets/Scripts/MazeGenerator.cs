@@ -23,8 +23,7 @@ public class MazeGenerator : MonoBehaviour {
   [HideInInspector]
   public bool generatedBlocks = false;
 
-  // Start is called before the first frame update
-  void Start() {
+  void Awake() {
     if (!generatedBlocks)
       GenerateBlocks();
     while (!completed) {
