@@ -79,11 +79,11 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   void OnTriggerEnter(Collider other) {
-    if (other.CompareTag("Gem")) {
-      // GameManager.instance.CollectGem();
-    }
     if (other.transform.CompareTag("Portal")) {
       AudioManager.instance.Play("whoosh");
+    }
+    if (other.transform.CompareTag("Finish")) {
+      GameManager.instance.GameDone(true);
     }
   }
 }

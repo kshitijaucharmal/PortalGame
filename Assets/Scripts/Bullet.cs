@@ -16,32 +16,73 @@ public class Bullet : MonoBehaviour {
 
   private int bounceCtr = 0;
 
+  int DamageAmount(ElementType enemy) {
+    ElementType mine = GameManager.instance.currentElement;
+    if ((mine == ElementType.FIRE && enemy == ElementType.AIR) ||
+        (mine == ElementType.WATER && enemy == ElementType.FIRE) ||
+        (mine == ElementType.EARTH && enemy == ElementType.WATER) ||
+        (mine == ElementType.AIR && enemy == ElementType.EARTH)) {
+      Debug.Log("Critical Attack");
+      return 50;
+    }
+
+    return 20;
+  }
+
   void OnCollisionEnter(Collision other) {
 
     // Enemy Handling
     if (bulletType == BulletType.SHOT && other.transform.CompareTag("Enemy")) {
       // Destroy enemy
-      // TODO: Enemy health decrease
-      other.transform.GetComponent<EnemyScript>().damage(25);
+      var es = other.transform.GetComponent<EnemyScript>();
+      int damage = DamageAmount(es.enemyType);
+      es.damage(damage);
       // Destroy Bullet
       Destroy(gameObject);
     }
 
     // Wall
     if (bulletType == BulletType.PORTAL) {
-      if (other.transform.CompareTag("RightWall")) {
-        // Enable Portal and destroy wall
-        var cell = other.transform.GetComponentInParent<Cell>();
-        cell.ConvertRight();
-        // Destroy Bullet
-        Destroy(gameObject);
-      }
-      if (other.transform.CompareTag("TopWall")) {
-        // Enable Portal and destroy wall
-        var cell = other.transform.GetComponentInParent<Cell>();
-        cell.ConvertTop();
-        // Destroy Bullet
-        Destroy(gameObject);
+      ElementType et = GameManager.instance.currentElement;
+      if (et == ElementType.NONE) {
+        if (other.transform.CompareTag("RightWall")) {
+          // Enable Portal and destroy wall
+          var cell = other.transform.GetComponentInParent<Cell>();
+          cell.ConvertRight();
+          // Destroy Bullet
+          Destroy(gameObject);
+        }
+        if (other.transform.CompareTag("TopWall")) {
+          // Enable Portal and destroy wall
+          var cell = other.transform.GetComponentInParent<Cell>();
+          cell.ConvertTop();
+          // Destroy Bullet
+          Destroy(gameObject);
+        }
+      } else {
+        if (other.transform.CompareTag("Base")) {
+          var cell = other.transform.GetComponentInParent<Cell>();
+          if (et == ElementType.AIR)
+            cell.OpenAirPortal();
+          if (et == ElementType.FIRE)
+            cell.OpenFirePortal();
+          if (et == ElementType.EARTH){
+            cell.OpenEarthPortal();
+            var es = cell.ReturnEarthPortal();
+            GameManager.instance.portals.Add(other.transform);
+            int t = ++GameManager.instance.tunnel;
+            if(t % 2 == 0){ 
+              es.SetTarget(GameManager.instance.portals[t-1]);
+              Debug.Log("Connecting the two");
+              Destroy(gameObject);
+            }
+            else{
+              Debug.Log("Spawn Another portal First");
+              Destroy(gameObject);
+            }
+          }
+          Destroy(gameObject);
+        }
       }
       return;
     }

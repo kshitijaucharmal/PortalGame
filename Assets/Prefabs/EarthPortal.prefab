@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9716981, g: 0.40545207, b: 0, a: 1}
+      maxColor: {r: 0.41578877, g: 0.2719325, b: 0.16974497, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9902,7 +9902,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9716981, g: 0.40545207, b: 0, a: 1}
+      maxColor: {r: 0.33383465, g: 0.23567565, b: 0.1659489, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14704,7 +14704,7 @@ GameObject:
   - component: {fileID: 1601506141239540749}
   - component: {fileID: 5574110145886096913}
   m_Layer: 0
-  m_Name: FirePortal
+  m_Name: EarthPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19807,7 +19807,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9716981, g: 0.40545207, b: 0, a: 1}
+      maxColor: {r: 0.42912894, g: 0.2664523, b: 0.1508958, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

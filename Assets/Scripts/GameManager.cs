@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour {
   [SerializeField]
   private TMP_Text winLoseText;
 
-  private ElementType currentElement = ElementType.NONE;
+  public GameObject finalPortal;
+
+  public ElementType currentElement = ElementType.NONE;
   public HashSet<ElementType> inventory = new HashSet<ElementType>();
 
   public TMP_Text instructions;
@@ -41,18 +43,19 @@ public class GameManager : MonoBehaviour {
     SetCurrentElement(et);
   }
 
+  public int tunnel = 0;
+  public List<Transform> portals;
+
   public void SetCurrentElement(ElementType et) {
     // Check to see if player has this element
     if (!inventory.Contains(et)) {
-      instructions.text = "You Don't Posses " + et;
+      // You Don't Posses et;
       return;
     }
+
     currentElement = et;
     instructions.text = "Currently Equipped: " + et;
 
-    if (inventory.Count >= 4) {
-      Debug.Log("Every Element Collected");
-    }
     // TODO: Update the UI (Now this element is with you)
     //
     // Notify player
@@ -60,6 +63,23 @@ public class GameManager : MonoBehaviour {
   }
 
   void Update() {
+    // Normal
+    // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+    //   SetCurrentElement(ElementType.FIRE);
+    // }
+    // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+    //   SetCurrentElement(ElementType.WATER);
+    // }
+    // if (Input.GetKeyDown(KeyCode.Alpha3)) {
+    //   SetCurrentElement(ElementType.AIR);
+    // }
+    // if (Input.GetKeyDown(KeyCode.Alpha4)) {
+    //   SetCurrentElement(ElementType.EARTH);
+    // }
+    // if (Input.GetKeyDown(KeyCode.Alpha5)) {
+    //   SetCurrentElement(ElementType.NONE);
+    // }
+    // Debug
     if (Input.GetKeyDown(KeyCode.Alpha1)) {
       AddElement(ElementType.FIRE);
     }
@@ -71,6 +91,20 @@ public class GameManager : MonoBehaviour {
     }
     if (Input.GetKeyDown(KeyCode.Alpha4)) {
       AddElement(ElementType.EARTH);
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha5)) {
+      AddElement(ElementType.NONE);
+    }
+  }
+
+  private int gemsPlaced = 0;
+
+  public void GemPlaced() {
+    gemsPlaced++;
+    if (gemsPlaced >= 4) {
+      instructions.text =
+          "You did it! Jump Into the Portal to go back to the future";
+      finalPortal.SetActive(true);
     }
   }
 
@@ -88,6 +122,7 @@ public class GameManager : MonoBehaviour {
 
     hudCanvas.SetActive(true);
     gameoverCanvas.SetActive(false);
+    finalPortal.SetActive(false);
 
     // Instantiate Gems
     for (int i = 0; i < gems.Length; i++) {

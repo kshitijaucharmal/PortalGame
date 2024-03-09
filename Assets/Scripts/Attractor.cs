@@ -34,6 +34,9 @@ public class AttractorWithoutRigidbody : MonoBehaviour {
         attractedObject.transform.localScale =
             Vector3.Max(newScale, Vector3.zero);
       }
+      if (distance < 0.5) {
+        Destroy(attractedObject);
+      }
     }
   }
 }

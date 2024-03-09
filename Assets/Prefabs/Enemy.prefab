@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7363683101319252747}
   m_Layer: 0
   m_Name: Kid_ghost_v1:joint4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2568502348761632577}
   m_Layer: 0
   m_Name: ShootPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,6 +165,13 @@ MonoBehaviour:
   bulletSpwnTime: 1
   shootPoint: {fileID: 2568502348761632577}
   animator: {fileID: 6746565253666235506}
+  enemyType: 0
+  sr: {fileID: 8597964425949082949}
+  normalTex: {fileID: 2100000, guid: 16481844e88bc2feb80ed4b7c09d80fc, type: 2}
+  fireTex: {fileID: 2100000, guid: 81adef54633ec83c09452547db65f3be, type: 2}
+  waterTex: {fileID: 2100000, guid: cbfbb0e5a764281feb71ca08b6f98bc6, type: 2}
+  airTex: {fileID: 2100000, guid: ac5039d398b17bbd78bed4dcab35386d, type: 2}
+  earthTex: {fileID: 2100000, guid: f93623f7efe96731eba5b9259df49741, type: 2}
   player: {fileID: 0}
 --- !u!95 &6746565253666235506
 Animator:
@@ -198,7 +205,7 @@ GameObject:
   - component: {fileID: 1186618534359958351}
   m_Layer: 0
   m_Name: GhostEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,7 +238,7 @@ GameObject:
   - component: {fileID: 3548230236154343948}
   m_Layer: 0
   m_Name: Kid_ghost_v1:joint2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +270,7 @@ GameObject:
   - component: {fileID: 2093039340302831241}
   m_Layer: 0
   m_Name: Kid_ghost_v1:joint5
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,7 +302,7 @@ GameObject:
   - component: {fileID: 8329909525403750184}
   m_Layer: 0
   m_Name: Kid_ghost_v1:Devil_Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,7 +333,7 @@ GameObject:
   - component: {fileID: 6084209838648660860}
   m_Layer: 0
   m_Name: GFX
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +365,7 @@ GameObject:
   - component: {fileID: 8641149037962952738}
   m_Layer: 0
   m_Name: Kid_ghost_v1:joint1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,7 +397,7 @@ GameObject:
   - component: {fileID: 2549175649075817485}
   m_Layer: 0
   m_Name: Kid_ghost_v1:joint3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -422,7 +429,7 @@ GameObject:
   - component: {fileID: 2256958481244342937}
   m_Layer: 0
   m_Name: JNTs
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,7 +462,7 @@ GameObject:
   - component: {fileID: 7330182161260957509}
   m_Layer: 7
   m_Name: mapIcon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,7 +546,7 @@ GameObject:
   - component: {fileID: 8597964425949082949}
   m_Layer: 0
   m_Name: Kid_ghost_v1:Ghost_Kid_S1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -22,11 +22,13 @@ public class PillarScript : MonoBehaviour {
     // If E button pressed
     if (canInsert && Input.GetButtonDown("Interact")) {
       if (!GameManager.instance.inventory.Contains(elementType)) {
-        Debug.Log("You don't have " + elementType + " element");
+        instructions.text = "You don't have " + elementType + " element";
       } else {
-        Debug.Log("Placed: " + elementType);
+        instructions.text = "Placed: " + elementType;
         gem.SetActive(true);
         gem.GetComponent<Collider>().enabled = false;
+        // Notify GameManager that placed
+        GameManager.instance.GemPlaced();
       }
     }
   }

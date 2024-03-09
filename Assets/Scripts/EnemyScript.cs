@@ -24,12 +24,21 @@ public class EnemyScript : MonoBehaviour {
   [SerializeField]
   private Animator animator;
 
-  private ElementType enemyType;
+  public ElementType enemyType;
+
+  [Header("Enemy Textures")]
+  public SkinnedMeshRenderer sr;
+  public Material normalTex;
+  public Material fireTex;
+  public Material waterTex;
+  public Material airTex;
+  public Material earthTex;
 
   public Transform player;
   private int health = 100;
   private float bulletSpwnCtr = 0;
   private bool canSeePlayer = false;
+
   public void SetTarget(Transform target) { player = target; }
 
   static T GetRandomEnum<T>() {
@@ -55,7 +64,18 @@ public class EnemyScript : MonoBehaviour {
   void Start() {
     bulletSpwnCtr = bulletSpwnTime;
     enemyType = GetRandomEnum<ElementType>();
-    // TODO: Set relevant prefab to spawn based on enemyType
+    Material tex;
+    if (enemyType == ElementType.FIRE)
+      tex = fireTex;
+    else if (enemyType == ElementType.WATER)
+      tex = waterTex;
+    else if (enemyType == ElementType.AIR)
+      tex = airTex;
+    else if (enemyType == ElementType.EARTH)
+      tex = earthTex;
+    else
+      tex = normalTex;
+    sr.material = tex;
   }
 
   void Update() {
@@ -77,6 +97,7 @@ public class EnemyScript : MonoBehaviour {
     Rigidbody bullet =
         Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity)
             .GetComponent<Rigidbody>();
+    bullet.GetComponent<EnemyBullet>().SetEnemyType(enemyType);
     Vector3 randomOffset =
         new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f),
                     Random.Range(-0.3f, 0.3f));

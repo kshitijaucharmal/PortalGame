@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bullet
+  m_Name: NormalEnemy
   m_Shader: {fileID: 4800000, guid: 66d261cceb43446dbdd99389a7ed8411, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d25a405999b72df47a9d5530491985c4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -59,8 +59,8 @@ Material:
     - _SurfaceType: 0
     - _ZWrite: 1
     m_Colors:
-    - _EmissionColor: {r: 0.08994526, g: 0.46608, b: 0, a: 0}
-    - _MainColor: {r: 0, g: 0.36931276, b: 0.0059566516, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.75}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
