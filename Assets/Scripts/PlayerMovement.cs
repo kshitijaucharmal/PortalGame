@@ -20,18 +20,23 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField]
   private AudioSource footSteps;
 
+  public HealthLimit healthSlider;
+
   [SerializeField]
   private MouseMovment cameraMouse;
 
   Vector3 velocity;
   bool isGrounded;
   // Start is called before the first frame update
-  void Start() { healthText.text = health.ToString(); }
+  void Start() { healthText.text = health.ToString();
+    healthSlider.SetMaxHealth(health);
+   }
 
   public int GetHealth() { return health; }
 
   public void damage(int dam) {
     health -= dam;
+    healthSlider.SetHealth(health);
     StartCoroutine(cameraMouse.Shake(0.2f, 0.3f));
 
     if (health <= 0) {
@@ -70,6 +75,10 @@ public class PlayerMovement : MonoBehaviour {
     velocity.y += gravity * Time.deltaTime;
 
     controller.Move(velocity * Time.deltaTime);
+
+    if(transform.position.y <= -40){
+      transform.position = new Vector3(45, 0, -5);
+    }
   }
 
   void OnCollisionEnter(Collision other) {

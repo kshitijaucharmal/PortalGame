@@ -31,10 +31,18 @@ public class GameManager : MonoBehaviour {
   [SerializeField]
   private TMP_Text winLoseText;
 
+  [Header("Earth Shield")]
+  public GameObject earthShield;
+
   public GameObject finalPortal;
 
   public ElementType currentElement = ElementType.NONE;
   public HashSet<ElementType> inventory = new HashSet<ElementType>();
+
+  void Start(){
+    inventory.Add(ElementType.NONE);
+    earthShield.SetActive(false);
+  }
 
   public TMP_Text instructions;
 
@@ -49,51 +57,62 @@ public class GameManager : MonoBehaviour {
   public void SetCurrentElement(ElementType et) {
     // Check to see if player has this element
     if (!inventory.Contains(et)) {
-      // You Don't Posses et;
+      instructions.text = "You haven't found this element yet.";
       return;
     }
 
     currentElement = et;
-    instructions.text = "Currently Equipped: " + et;
 
-    // TODO: Update the UI (Now this element is with you)
-    //
+    if(et == ElementType.EARTH){
+      earthShield.SetActive(true);
+    }
+    else{
+      earthShield.SetActive(false);
+    }
+    
     // Notify player
     player.GetComponent<Shooting>().SetElement(currentElement);
   }
 
   void Update() {
-    // Normal
-    // if (Input.GetKeyDown(KeyCode.Alpha1)) {
-    //   SetCurrentElement(ElementType.FIRE);
-    // }
-    // if (Input.GetKeyDown(KeyCode.Alpha2)) {
-    //   SetCurrentElement(ElementType.WATER);
-    // }
-    // if (Input.GetKeyDown(KeyCode.Alpha3)) {
-    //   SetCurrentElement(ElementType.AIR);
-    // }
-    // if (Input.GetKeyDown(KeyCode.Alpha4)) {
-    //   SetCurrentElement(ElementType.EARTH);
-    // }
-    // if (Input.GetKeyDown(KeyCode.Alpha5)) {
-    //   SetCurrentElement(ElementType.NONE);
-    // }
+    TakeInput(false);
+  }
+
+  void TakeInput(bool debug=false){
+    if(!debug){
+      if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        SetCurrentElement(ElementType.FIRE);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        SetCurrentElement(ElementType.WATER);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        SetCurrentElement(ElementType.AIR);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha4)) {
+        SetCurrentElement(ElementType.EARTH);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha5)) {
+        SetCurrentElement(ElementType.NONE);
+      }
+    }
     // Debug
-    if (Input.GetKeyDown(KeyCode.Alpha1)) {
-      AddElement(ElementType.FIRE);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha2)) {
-      AddElement(ElementType.WATER);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha3)) {
-      AddElement(ElementType.AIR);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha4)) {
-      AddElement(ElementType.EARTH);
-    }
-    if (Input.GetKeyDown(KeyCode.Alpha5)) {
-      AddElement(ElementType.NONE);
+    else{
+      if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        AddElement(ElementType.FIRE);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        AddElement(ElementType.WATER);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        AddElement(ElementType.AIR);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha4)) {
+        AddElement(ElementType.EARTH);
+      }
+      if (Input.GetKeyDown(KeyCode.Alpha5)) {
+        AddElement(ElementType.NONE);
+      }
     }
   }
 

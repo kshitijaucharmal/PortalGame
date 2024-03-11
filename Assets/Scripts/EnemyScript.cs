@@ -34,6 +34,9 @@ public class EnemyScript : MonoBehaviour {
   public Material airTex;
   public Material earthTex;
 
+  [Header("health")]
+  public HealthLimit healthSlider;
+
   public Transform player;
   private int health = 100;
   private float bulletSpwnCtr = 0;
@@ -51,6 +54,7 @@ public class EnemyScript : MonoBehaviour {
 
   public void damage(int dam) {
     health -= dam;
+    healthSlider.SetHealth(health);
     animator.SetTrigger("Hurt");
     // If dead
     if (health < 0) {
@@ -64,6 +68,7 @@ public class EnemyScript : MonoBehaviour {
   void Start() {
     bulletSpwnCtr = bulletSpwnTime;
     enemyType = GetRandomEnum<ElementType>();
+    healthSlider.SetMaxHealth(health);
     Material tex;
     if (enemyType == ElementType.FIRE)
       tex = fireTex;
@@ -90,6 +95,10 @@ public class EnemyScript : MonoBehaviour {
         ShootPlayer();
       }
       agent.destination = player.position;
+    }
+
+    if(transform.position.y <= -40){
+      Destroy(gameObject);
     }
   }
 

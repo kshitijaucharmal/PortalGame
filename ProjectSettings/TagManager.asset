@@ -11,6 +11,9 @@ TagManager:
   - Portal
   - Instructions
   - Base
+  - Top
+  - Floor
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

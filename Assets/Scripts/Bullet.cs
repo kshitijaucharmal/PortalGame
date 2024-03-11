@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour {
     // Wall
     if (bulletType == BulletType.PORTAL) {
       ElementType et = GameManager.instance.currentElement;
-      if (et == ElementType.NONE) {
+      if (et == ElementType.NONE || et == ElementType.EARTH) {
         if (other.transform.CompareTag("RightWall")) {
           // Enable Portal and destroy wall
           var cell = other.transform.GetComponentInParent<Cell>();
@@ -66,21 +66,8 @@ public class Bullet : MonoBehaviour {
             cell.OpenAirPortal();
           if (et == ElementType.FIRE)
             cell.OpenFirePortal();
-          if (et == ElementType.EARTH){
-            cell.OpenEarthPortal();
-            var es = cell.ReturnEarthPortal();
-            GameManager.instance.portals.Add(other.transform);
-            int t = ++GameManager.instance.tunnel;
-            if(t % 2 == 0){ 
-              es.SetTarget(GameManager.instance.portals[t-1]);
-              Debug.Log("Connecting the two");
-              Destroy(gameObject);
-            }
-            else{
-              Debug.Log("Spawn Another portal First");
-              Destroy(gameObject);
-            }
-          }
+          if (et == ElementType.WATER)
+            cell.OpenWaterPortal();
           Destroy(gameObject);
         }
       }

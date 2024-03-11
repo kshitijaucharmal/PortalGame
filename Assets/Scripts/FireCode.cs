@@ -5,15 +5,17 @@ public class FireCode : MonoBehaviour {
   public int playerDamage = 10;
 
   void OnTriggerEnter(Collider other) {
-    if (other.transform.CompareTag("Enemy")) {
-      Destroy(other.gameObject); // Destroy the enemy
-    }
     if (other.CompareTag(playerTag)) {
       // Decrease player's health by the specified amount
       var player = other.GetComponent<PlayerMovement>();
       if (player != null) {
         player.damage(playerDamage);
       }
+      return;
+    }
+    if (other.CompareTag("Enemy")){
+      var es = other.GetComponent<EnemyScript>();
+      es.damage(1000);
     }
   }
 }

@@ -7,6 +7,11 @@ public class EnemyBullet : MonoBehaviour {
 
   int DamageAmount() {
     ElementType player = GameManager.instance.currentElement;
+    if (player == ElementType.EARTH){
+      if (enemy == ElementType.AIR) return 10;
+      else return 0;
+    }
+
     if ((enemy == ElementType.FIRE && player == ElementType.AIR) ||
         (enemy == ElementType.WATER && player == ElementType.FIRE) ||
         (enemy == ElementType.EARTH && player == ElementType.WATER) ||

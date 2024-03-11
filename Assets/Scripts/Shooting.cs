@@ -54,11 +54,6 @@ public class Shooting : MonoBehaviour {
       Shoot(false);
     if (Input.GetButtonDown("Fire2"))
       Shoot(true);
-
-    // Debuging
-    if (Input.GetKeyDown(KeyCode.R)) {
-      n_portals += 1;
-    }
   }
 
   public void SetElement(ElementType et) {

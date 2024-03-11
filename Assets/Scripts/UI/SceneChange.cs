@@ -10,9 +10,9 @@ public class SceneChange : MonoBehaviour {
   }
 
   public void StartGame() {
-    // 1 is index of gamescene
+    // 1 is index of instruc
     SceneManager.LoadScene(1);
-    GameManager.instance.GameRestart();
+    //GameManager.instance.GameRestart();
   }
 
   public void MainMenu() { SceneManager.LoadScene(0); }

@@ -7,7 +7,7 @@ using TMPro;
 
 public class Earth : MonoBehaviour
 {
-    private Transform Floor;
+    public Transform Floor;
     public Vector3 offset = new Vector3(2, 0, 2);
     private TMP_Text instructions;
 
@@ -15,8 +15,8 @@ public class Earth : MonoBehaviour
         instructions = GameObject.FindGameObjectWithTag("Instructions").GetComponent<TMP_Text>();
     }
 
-    public void SetTarget(Transform floor){
-        Floor = floor;
+    public void SetTarget(Transform f){
+        Floor = f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +27,7 @@ public class Earth : MonoBehaviour
                 instructions.text = "Shoot another earth portal to connect";
                 return;
             }
-            var player = GameObject.FindGameObjectWithTag("Player").transform;
+            var player = other.transform;
             player.position = Floor.position + offset;
         }
     }

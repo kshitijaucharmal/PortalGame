@@ -14,16 +14,26 @@ public class ButtonScroll : MonoBehaviour {
   }
 
   private void Update() {
-    // Scroll the mouse to change the index of the array
-    float scroll = Input.mouseScrollDelta.y;
-    if (scroll != 0) {
-      ChangeIndex((int)Mathf.Sign(scroll));
+    if(Input.GetKeyDown(KeyCode.Alpha1)){
+      ChangeIndex(0);
+    }
+    if(Input.GetKeyDown(KeyCode.Alpha2)){
+      ChangeIndex(1);
+    }
+    if(Input.GetKeyDown(KeyCode.Alpha3)){
+      ChangeIndex(2);
+    }
+    if(Input.GetKeyDown(KeyCode.Alpha4)){
+      ChangeIndex(3);
+    }
+    if(Input.GetKeyDown(KeyCode.Alpha5)){
+      ChangeIndex(4);
     }
   }
 
-  private void ChangeIndex(int direction) {
+  private void ChangeIndex(int ci) {
     // Change the index of the array based on scroll direction
-    currentIndex = (currentIndex + direction + buttons.Length) % buttons.Length;
+    currentIndex = ci;
 
     // Update the button opacity based on the new index
     UpdateButtonOpacity();
