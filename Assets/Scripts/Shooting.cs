@@ -58,35 +58,44 @@ public class Shooting : MonoBehaviour {
 
   public void SetElement(ElementType et) {
     equippedElement = et;
+    // Set The Type of bullet to be shot
     SetBulletType();
     SetPortalType();
   }
 
   void SetBulletType() {
-    if (equippedElement == ElementType.FIRE) {
+    switch (equippedElement) {
+    case ElementType.FIRE:
       currentNormalBullet = elementalBulletPrefabs[0];
-    } else if (equippedElement == ElementType.WATER) {
+      break;
+    case ElementType.WATER:
       currentNormalBullet = elementalBulletPrefabs[1];
-    } else if (equippedElement == ElementType.AIR) {
+      break;
+    case ElementType.AIR:
       currentNormalBullet = elementalBulletPrefabs[2];
-    } else if (equippedElement == ElementType.EARTH) {
+      break;
+    case ElementType.EARTH:
       currentNormalBullet = elementalBulletPrefabs[3];
-    } else if (equippedElement == ElementType.NONE) {
-      currentNormalBullet = normalBulletPrefab;
+      break;
     }
   }
 
   void SetPortalType() {
-    if (equippedElement == ElementType.FIRE) {
+    switch (equippedElement) {
+    case ElementType.FIRE:
       currentPortalBullet = elementalPortalBulletPrefabs[0];
-    } else if (equippedElement == ElementType.WATER) {
+      break;
+    case ElementType.WATER:
       currentPortalBullet = elementalPortalBulletPrefabs[1];
-    } else if (equippedElement == ElementType.AIR) {
+      break;
+    case ElementType.AIR:
       currentPortalBullet = elementalPortalBulletPrefabs[2];
-    } else if (equippedElement == ElementType.EARTH) {
+      break;
+    case ElementType.EARTH:
       currentPortalBullet = elementalPortalBulletPrefabs[3];
-    } else if (equippedElement == ElementType.NONE) {
-      currentPortalBullet = portalBulletPrefab;
+      break;
+    default:
+      currentPortalBullet = currentPortalBullet;
     }
   }
 
