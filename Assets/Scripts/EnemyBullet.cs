@@ -27,10 +27,10 @@ public class EnemyBullet : MonoBehaviour {
 
   void OnCollisionEnter(Collision other) {
     if (other.transform.CompareTag("Player")) {
-      var player = other.transform.GetComponent<PlayerMovement>();
+      var player = other.transform.GetComponent<Player>();
 
       int damage = DamageAmount();
-      player.damage(damage);
+      player.Damage(damage);
     }
 
     var go = Instantiate(impactPS, transform.position, Quaternion.identity);

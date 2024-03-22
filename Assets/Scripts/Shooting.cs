@@ -77,6 +77,9 @@ public class Shooting : MonoBehaviour {
     case ElementType.EARTH:
       currentNormalBullet = elementalBulletPrefabs[3];
       break;
+    default:
+      currentNormalBullet = normalBulletPrefab;
+      break;
     }
   }
 
@@ -96,6 +99,7 @@ public class Shooting : MonoBehaviour {
       break;
     default:
       currentPortalBullet = currentPortalBullet;
+      break;
     }
   }
 

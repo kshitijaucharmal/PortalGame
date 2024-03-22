@@ -1,35 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour {
 
-  [SerializeField]
-  private GameObject[] gems;
+  [SerializeField] private GameObject[] gems;
 
-  [SerializeField]
-  private Transform player;
-  [SerializeField]
-  private MazeGenerator mazeGenerator;
+  [SerializeField] private Transform player;
+  [SerializeField] private MazeGenerator mazeGenerator;
 
   [Header("Canvas controls")]
-  [SerializeField]
-  private GameObject gameoverCanvas;
-  [SerializeField]
-  private GameObject hudCanvas;
+  [SerializeField] private GameObject gameoverCanvas;
+  [SerializeField] private GameObject hudCanvas;
 
   [Header("Stats")]
-  [SerializeField]
-  private TMP_Text playerHealthText;
-  [SerializeField]
-  private TMP_Text enemiesKilledText;
-  [SerializeField]
-  private TMP_Text timeTakenText;
-  [SerializeField]
-  private TMP_Text timeTakenTitle;
-  [SerializeField]
-  private TMP_Text winLoseText;
+  [SerializeField] private TMP_Text playerHealthText;
+  [SerializeField] private TMP_Text enemiesKilledText;
+  [SerializeField] private TMP_Text timeTakenText;
+  [SerializeField] private TMP_Text timeTakenTitle;
+  [SerializeField] private TMP_Text winLoseText;
 
   [Header("Earth Shield")]
   public GameObject earthShield;
@@ -168,7 +157,7 @@ public class GameManager : MonoBehaviour {
     Cursor.lockState = CursorLockMode.None;
 
     // Get Data for UI
-    int health = player.GetComponent<PlayerMovement>().GetHealth();
+    int health = player.GetComponent<Player>().health;
     int enemies_killed = player.GetComponent<Shooting>().enemies_killed;
 
     // UI Updates

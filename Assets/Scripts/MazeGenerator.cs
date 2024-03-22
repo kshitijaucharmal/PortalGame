@@ -1,41 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour {
 
-  public Vector2Int gridDimensions = new Vector2Int(10, 10);
-  [SerializeField]
-  private GameObject cellPrefab;
   public int scaling = 5;
+  public Vector2Int gridDimensions = new Vector2Int(10, 10);
+  public Vector2Int playerSpawnPosition = new Vector2Int(1, 1);
 
-  [SerializeField]
-  private EnemySpawner enemySpawner;
+  [SerializeField] private GameObject cellPrefab;
+  [SerializeField] private GameObject playerPrefab;
 
+  // Maze gen variables
   private Cell[,] cells;
   private Stack<Vector2Int> visited = new Stack<Vector2Int>();
   private Vector2Int current;
 
-  [HideInInspector]
-  public bool completed = false;
-  [HideInInspector]
-  public bool generatedBlocks = false;
+  // Public for editor
+  [HideInInspector] public bool completed = false;
+  [HideInInspector] public bool generatedBlocks = false;
 
+  // Create maze in awake
   void Awake() {
-    if (!generatedBlocks)
-      GenerateBlocks();
-    while (!completed) {
-      Step();
-    }
+    if (!generatedBlocks) GenerateBlocks();
+    while (!completed) Step();
     BakeNavMesh();
 
-    // Spawn Enemies
-    enemySpawner.SpawnEnemies(scaling, gridDimensions.x);
+    SpawnPlayer();
   }
 
-  void Update() {}
+  void SpawnPlayer(){
+    Vector3 pos = new Vector3(playerSpawnPosition.x * scaling + scaling, 1, playerSpawnPosition.y * scaling + scaling);
+    var playerRef = Instantiate(playerPrefab, pos, Quaternion.identity).GetComponent<PlayerMovement>();
+  }
 
   public void GenerateBlocks() {
     GameObject mazeObj = new GameObject("Maze");

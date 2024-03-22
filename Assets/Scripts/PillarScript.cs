@@ -1,21 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class PillarScript : MonoBehaviour {
+
   public bool canInsert = false;
   public ElementType elementType;
-
   public GameObject gem;
-
   private TMP_Text instructions;
   public MouseMovment cameraShake;
 
   void Start() {
     gem.SetActive(false);
-    instructions = GameObject.FindGameObjectWithTag("Instructions")
-                       .GetComponent<TMP_Text>();
+    instructions = GameObject.FindGameObjectWithTag("Instructions") .GetComponent<TMP_Text>();
   }
 
   // Update is called once per frame
@@ -26,7 +22,7 @@ public class PillarScript : MonoBehaviour {
         instructions.text = "You don't have " + elementType + " element";
       } else {
         instructions.text = "Placed: " + elementType;
-        StartCoroutine(cameraShake.Shake(0.4f, 0.4f));
+        StartCoroutine(CameraShake.instance.Shake(0.4f, 0.4f));
         gem.SetActive(true);
         gem.GetComponent<Collider>().enabled = false;
         // Notify GameManager that placed
