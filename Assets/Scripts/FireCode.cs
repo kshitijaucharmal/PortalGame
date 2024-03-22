@@ -7,9 +7,9 @@ public class FireCode : MonoBehaviour {
   void OnTriggerEnter(Collider other) {
     if (other.CompareTag(playerTag)) {
       // Decrease player's health by the specified amount
-      var player = other.GetComponent<PlayerMovement>();
+      var player = other.GetComponent<Player>();
       if (player != null) {
-        player.damage(playerDamage);
+        player.Damage(playerDamage);
       }
       return;
     }

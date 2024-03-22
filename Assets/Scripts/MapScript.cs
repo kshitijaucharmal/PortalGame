@@ -1,25 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MapScript : MonoBehaviour {
 
-  private bool fullMap = false;
+  [SerializeField] private float smoothing = 0.4f;
+  [SerializeField] private Camera minimapCamera;
 
   [Header("Normal Settings")]
-  public Vector3 normalScale;
-  public Vector3 normalPosition;
+  public float normalScale = 1f;
+  public Vector3 normalPosition = new Vector3(-400, -220, 0);
 
   [Header("Full Screen Settings")]
-  public Vector3 fullScale;
-  public Vector3 fullPosition;
+  public float fullScale = 4f;
+  public Vector3 fullPosition = Vector3.zero;
 
-  public Camera minimapCamera;
   private Quaternion rot;
-
-  public float smoothing = 0.08f;
-  // Start is called before the first frame update
-  void Start() {}
+  private bool fullMap = false;
 
   // Update is called once per frame
   void Update() {
@@ -34,35 +29,19 @@ public class MapScript : MonoBehaviour {
 
   void SetMap() {
     if (fullMap) {
-      transform.localScale =
-          Vector3.Lerp(transform.localScale, fullScale, smoothing);
-      transform.localPosition =
-          Vector3.Lerp(transform.localPosition, fullPosition, smoothing);
-
-      minimapCamera.orthographicSize =
-          Mathf.Lerp(minimapCamera.orthographicSize, 60, smoothing);
-
+      transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * fullScale, smoothing);
+      transform.localPosition = Vector3.Lerp(transform.localPosition, fullPosition, smoothing);
+      minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, 60, smoothing);
       rot = minimapCamera.transform.rotation;
       minimapCamera.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-
-      minimapCamera.transform.position = Vector3.Lerp(
-          minimapCamera.transform.position, new Vector3(50, 6, 50), smoothing);
+      minimapCamera.transform.position = Vector3.Lerp(minimapCamera.transform.position, new Vector3(50, 6, 50), smoothing);
 
       Time.timeScale = 0;
     } else {
-      transform.localScale =
-          Vector3.Lerp(transform.localScale, normalScale, smoothing);
-      transform.localPosition =
-          Vector3.Lerp(transform.localPosition, normalPosition, smoothing);
-
-      minimapCamera.orthographicSize =
-          Mathf.Lerp(minimapCamera.orthographicSize, 15, smoothing);
-
-      // minimapCamera.transform.rotation = rot;
-
-      minimapCamera.transform.localPosition =
-          Vector3.Lerp(minimapCamera.transform.localPosition,
-                       new Vector3(0, 6, 0), smoothing);
+      transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * normalScale, smoothing);
+      transform.localPosition = Vector3.Lerp(transform.localPosition, normalPosition, smoothing);
+      minimapCamera.orthographicSize = Mathf.Lerp(minimapCamera.orthographicSize, 15, smoothing);
+      minimapCamera.transform.localPosition = Vector3.Lerp(minimapCamera.transform.localPosition, new Vector3(0, 6, 0), smoothing);
       Time.timeScale = 1;
     }
   }

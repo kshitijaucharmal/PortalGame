@@ -1,33 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+// Should only contain info about shooting
 using UnityEngine;
 using TMPro;
 
 public class Shooting : MonoBehaviour {
-  [Header("Prefabs")]
   public Transform shootPoint;
+
+  [Header("Prefabs")]
   public GameObject normalBulletPrefab;
-  [Tooltip("FIRE WATER AIR EARTH")]
-  public GameObject[] elementalBulletPrefabs;
   public GameObject portalBulletPrefab;
-  [Tooltip("FIRE WATER AIR EARTH")]
-  public GameObject[] elementalPortalBulletPrefabs;
+  [Tooltip("FIRE WATER AIR EARTH")] public GameObject[] elementalBulletPrefabs;
+  [Tooltip("FIRE WATER AIR EARTH")] public GameObject[] elementalPortalBulletPrefabs;
 
   public float bulletSpeed = 5f;
 
-  [SerializeField]
-  private Transform cam;
-  [SerializeField]
-  private Vector3 angleOffset;
-  [SerializeField]
-  private TMP_Text portalsText;
-  [SerializeField]
-  private int enemiesToKillForPortal = 2;
+  [SerializeField] private Transform cam;
+  [SerializeField] private Vector3 angleOffset;
+  [SerializeField] private TMP_Text portalsText;
+  [SerializeField] private int enemiesToKillForPortal = 2;
 
-  [HideInInspector]
-  public int enemies_killed = 0;
+  [HideInInspector] public int enemies_killed = 0;
+
   private int n_portals = 0;
-
   private ElementType equippedElement = ElementType.NONE;
   private GameObject currentNormalBullet;
   private GameObject currentPortalBullet;
@@ -96,9 +89,6 @@ public class Shooting : MonoBehaviour {
       break;
     case ElementType.EARTH:
       currentPortalBullet = elementalPortalBulletPrefabs[3];
-      break;
-    default:
-      currentPortalBullet = currentPortalBullet;
       break;
     }
   }
