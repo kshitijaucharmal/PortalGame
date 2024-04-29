@@ -6,8 +6,6 @@ using TMPro;
 public struct UIElements{
   public TMP_Text playerHealthText;
   public TMP_Text enemiesKilledText;
-  public TMP_Text timeTakenText;
-  public TMP_Text timeTakenTitle;
   public TMP_Text winLoseText;
   public TMP_Text instructions;
 }
