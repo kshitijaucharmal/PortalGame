@@ -2,6 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
+public struct UIElements{
+  public TMP_Text playerHealthText;
+  public TMP_Text enemiesKilledText;
+  public TMP_Text timeTakenText;
+  public TMP_Text timeTakenTitle;
+  public TMP_Text winLoseText;
+}
+
 public class GameManager : MonoBehaviour {
 
   [SerializeField] private GameObject[] gems;
@@ -14,15 +23,10 @@ public class GameManager : MonoBehaviour {
   [SerializeField] private GameObject hudCanvas;
 
   [Header("Stats")]
-  [SerializeField] private TMP_Text playerHealthText;
-  [SerializeField] private TMP_Text enemiesKilledText;
-  [SerializeField] private TMP_Text timeTakenText;
-  [SerializeField] private TMP_Text timeTakenTitle;
-  [SerializeField] private TMP_Text winLoseText;
+  public UIElements mainUI;
 
   [Header("Earth Shield")]
   public GameObject earthShield;
-
   public GameObject finalPortal;
 
   public ElementType currentElement = ElementType.NONE;
@@ -161,9 +165,9 @@ public class GameManager : MonoBehaviour {
     int enemies_killed = player.GetComponent<Shooting>().enemies_killed;
 
     // UI Updates
-    playerHealthText.text = won ? health.ToString() : "DEAD";
-    enemiesKilledText.text = enemies_killed.ToString();
-    winLoseText.text = won ? "YOU WIN :) !!" : "You Lost :(";
+    mainUI.playerHealthText.text = won ? health.ToString() : "DEAD";
+    mainUI.enemiesKilledText.text = enemies_killed.ToString();
+    mainUI.winLoseText.text = won ? "YOU WIN :) !!" : "You Lost :(";
 
     // Canvas Updates
     gameoverCanvas.SetActive(true);
