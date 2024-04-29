@@ -5656,11 +5656,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4058496299084417729}
   - component: {fileID: 5698209182497889902}
+  - component: {fileID: 8586465590836558853}
   - component: {fileID: 6013731177284811993}
-  - component: {fileID: 8586465590836558851}
   - component: {fileID: 1229142171}
   - component: {fileID: 8586465590836558852}
-  - component: {fileID: 8586465590836558853}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6502,7 +6501,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3829865674304797911}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 28b70607b42a5424da0928fb42ab5bd3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6530,17 +6529,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efff01c40cb1a3e5c92ef009f3f1ae5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 8586465590836558851}
-  speed: 8
-  gravity: -39.24
+  rb: {fileID: 8586465590836558853}
+  speed: 500
+  gravity: 39.24
   groundCheck: {fileID: 7677204406594452215}
   groundDistance: 0.4
-  jumpHeight: 2.5
+  jumpForce: 20
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   footSteps: {fileID: 8586465590836558852}
-  cameraMovement: {fileID: 0}
 --- !u!224 &6098050092447977398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7480,32 +7478,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!143 &8586465590836558851
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3829865674304797911}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5000001
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8586465590836558852
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7625,7 +7597,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
