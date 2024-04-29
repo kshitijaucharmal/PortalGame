@@ -14,6 +14,7 @@ public struct UIElements{
 
 public class GameManager : MonoBehaviour {
 
+  #region variables
   // Reference to player
   [SerializeField] private Transform player;
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour {
   // Portal
   public int tunnel = 0;
   public List<Transform> portals;
+  #endregion
 
   #region Singleton and Game Setup
   public static GameManager instance;
