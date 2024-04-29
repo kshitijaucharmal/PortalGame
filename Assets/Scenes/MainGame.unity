@@ -361,24 +361,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73963b9ed33c54717a18fef57f6d4c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 4058496299084417729}
+  mazeGenerator: {fileID: 1239599122}
+  gameoverCanvas: {fileID: 1836201748216736839}
+  hudCanvas: {fileID: 1197006161}
+  mainUI:
+    playerHealthText: {fileID: 1220036378}
+    enemiesKilledText: {fileID: 7388434200925291079}
+    winLoseText: {fileID: 1618854275}
+    instructions: {fileID: 985081400}
+  earthShield: {fileID: 898831035}
+  finalPortal: {fileID: 1170725240}
   gems:
   - {fileID: 1000010880751780, guid: c3c0707254334a64ca8198f7486e977d, type: 3}
   - {fileID: 1000010728489230, guid: 8b40cffea67202d4bbf662b25de4c94a, type: 3}
   - {fileID: 1000010921973622, guid: af16961524284e54491133548920258b, type: 3}
   - {fileID: 1000011841440206, guid: 0ed203d298c050b49bfabe788790e1c2, type: 3}
-  player: {fileID: 4058496299084417729}
-  mazeGenerator: {fileID: 1239599122}
-  gameoverCanvas: {fileID: 1836201748216736839}
-  hudCanvas: {fileID: 1197006161}
-  playerHealthText: {fileID: 8039456842015328183}
-  enemiesKilledText: {fileID: 7388434200925291079}
-  timeTakenText: {fileID: 0}
-  timeTakenTitle: {fileID: 0}
-  winLoseText: {fileID: 1618854275}
-  earthShield: {fileID: 898831035}
-  finalPortal: {fileID: 1170725240}
   currentElement: 4
-  instructions: {fileID: 985081400}
   tunnel: 0
   portals: []
 --- !u!114 &237704857
